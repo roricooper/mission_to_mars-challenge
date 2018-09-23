@@ -1,101 +1,145 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<title>Mission to Mars (Rori Cooper - Homewok Unit 13)</title>
-		<meta charset="UTF-8">
-			<meta name="viewport" content="width=device-width, initial-scale=1.0">
-				<meta http-equiv="X-UA-Compatible" content="ie=edge">
-					<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-						<link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.min.css">
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission to Mars (Rori Cooper) </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.min.css">
 							<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 								<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
-								<style></style>
-							</head>
-							<body>
-								<div class="container">
-									<div class="jumbotron text-center">
-										<h1>Mission to Mars </h1>
-										<p>
-											<a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a>
-										</p>
-									</div>
-									<!-- Mars Data -->
-									<div class="row" id="mars-data">
-										<div class="col-md-12 col-sm-12">
-											<h2 class="news">Latest Mars News</h2>
-											<h4 class="heading">{{mars_data.news_title}}</h4>
-											<p>{{mars_data.newsp}}</p>
-										</div>
-										<div class="col-md-8 col-sm-12">
-											<h2 class="featured-image">Featured Mars Image</h2>
-											<img src= {{ mars_data.featured_image_url }} height=auto width=750px>
-											</div>
-											<div class="col-md-4 col-sm-12">
-												<div class="panel panel-default">
-													<div class="panel-body weather">
-														<h4>Current Weather on Mars</h4>
-            {{ mars_data.mars_weather }}
+    <!--Bootstrap Scripts-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</head>
+
+<body background="https://wustl.bootcampcontent.com/Data-Viz-BootCamp-MW/DataAnalytics/raw/master/Week%2013-Web-Scraping-and-Document-Databases/HW%20Instructions/Images/mission_to_mars.jpg">
+
+    <div class="container c7270">
+        <header class="header-1">
+            <div class="overlay"></div>
+            <div class="container h-100">
+                <div class="d-flex text-center h-100">
+                    <div class="my-auto w-100 text-white">
+
+                        <h1 class="display-2">Mission to Mars App</h1></br></br></br></br></br>
+
+                        <h2 data-type="header">Rori Cooper | Homework Unit 13</h2><a href="/scrape" class="btn btn-danger btn-lg mt-2">Click to Scrape New Data</a></div>
+
+                </div>
+            </div>
+        </header>
+    </div>
+</br>
+</br>
+  <div id="mars_data">
+    <div class="container c7309">
+        <section class="bdg-sect">
+            <h1 class="heading">Latest Mars News</h1>
+        </section>
+      <h4 class="strong">{{mars_data.news_title}}</h4>
+        <blockquote class="blockquote">
+            <p class="mb-0">{{mars_data.newsp}}</p>
+            <footer class="blockquote-footer">Mars Exploration Program <cite title="Source Title">NASA</cite></footer>
+        </blockquote>
+    </div>
+    <div class="container c12749">
+        <div class="row feature-section">
+            <div class="col-md-5">
+                <h1 data-type="header" class="featured-image">JPL Featured Image</h1><img alt="500x500" src={{ mars_data.featured_image_url }} class="feature-image img-fluid mx-auto" style="width:150%" /></div>
+            <div class="col-md-7">
+                <h2 class="feature-heading weather">Current Weather on Mars <span class="text-muted"></span></h2>
+                <p class="lead">{{ mars_data.mars_weather }}</p>
+                <div class="container c9798 ">
+                    <section class="bdg-sect">
+                        <h1 class="heading">Facts About Mars</h1>
+                      <p>{{ mars_data.mars_facts | safe }}</p>
+                        <table>
+                        </table>
+                        <p class="paragraph"></p>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container c16740 hemispheres">
+        <h1 data-type="header" id="hemisphere_title" class="text-center">Hemispheres on Mars</h1>
+    </div>
+    <div class="container c7348">
+        <div class="row c10150">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 hempispheres" id="i74crw">
+                <div class="card"><img src = {{ mars_data.hemisphere_image_urls[0].url_img}} width="100%">
+                    <div class="card-body">
+                        <h5 class="card-title hemisphere-titles">{{ mars_data.hemisphere_image_urls[0].title }}</h5>
+                        <p</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 hemispheres" id="is0914">
+                <div class="card"><img src = {{ mars_data.hemisphere_image_urls[1].url_img}} width="100%">
+                    <div class="card-body">
+                        <h5 class="card-title hemisphere-titles">{{ mars_data.hemisphere_image_urls[1].title }}</h5>
+                        <p</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container c7387">
+        <div class="row c9857">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 hemispheres" id="iqgn3w">
+                <div class="card"><img src = {{ mars_data.hemisphere_image_urls[2].url_img}} width="100%">
+                    <div class="card-body">
+                        <h5 class="card-title hemisphere-titles">{{ mars_data.hemisphere_image_urls[2].title }}</h5>
+                        <p</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 hemispheres" id="izvt35">
+                <div class="card"><img src = {{ mars_data.hemisphere_image_urls[3].url_img}} width="100%">
+                    <div class="card-body">
+                        <h5 class="card-title hemisphere-titles">{{ mars_data.hemisphere_image_urls[3].title }}</h5>
+                        <p</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  <div>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Thanks for Visiting!</h5>
+        <p>This site was made by Rori Cooper for Unit 13 Homework.</a>
+
+                  <p> Page styling based on <a href="https://getbootstrap.com" rel="nofollow">Bootstrap</a> and <a href="https://bootswatch.com/darkly/" rel="nofollow">Bootswatch "Darkly" Theme</a>.</p>
 
 
-													</div>
-												</div>
-												<h4>Mars Facts</h4>
-												<p>{{ mars_data.mars_facts | safe }}</p>
-											</div>
-										</div>
-										<div class="panel panel-default">
-											<div class="panel-body">
-												<h4 id="hemisphere_title" style="text-align: center;">Mars Hemispheres</h4>
-												<hr>
-													<div class="row">
-														<div class="col-md-6 hemispheres">
-															<div class="panel panel-default">
-																<div class="panel-header">
-																	<img src = {{ mars_data.hemisphere_image_urls[0].url_img}} width="100%">
-																	</div>
-																	<div class="panel-body hemisphere-titles">
-																		<h4>{{ mars_data.hemisphere_image_urls[0].title }}</h4>
-																	</div>
-																</div>
-															</div>
-															<div class="col-md-6 hemispheres">
-																<div class="panel panel-default">
-																	<div class="panel-header">
-																		<img src = {{ mars_data.hemisphere_image_urls[1].url_img}} width="100%">
-																		</div>
-																		<div class="panel-body hemisphere-titles">
-																			<h4>{{ mars_data.hemisphere_image_urls[1].title }}</h4>
-																		</div>
-																	</div>
-																</div>
-																<div class="col-md-6 hemispheres">
-																	<div class="panel panel-default">
-																		<div class="panel-header">
-																			<img src = {{ mars_data.hemisphere_image_urls[2].url_img}} width="100%">
-																			</div>
-																			<div class="panel-body hemisphere-titles">
-																				<h4>{{ mars_data.hemisphere_image_urls[2].title }}</h4>
-																			</div>
-																		</div>
-																	</div>
-																	<div class="col-md-6 hemispheres">
-																		<div class="panel panel-default">
-																			<div class="panel-header">
-																				<img src = {{ mars_data.hemisphere_image_urls[3].url_img}} width="100%">
-																				</div>
-																				<div class="panel-body hemisphere-titles">
-																					<h4>{{ mars_data.hemisphere_image_urls[3].title }}</h4>
-																				</div>
-																			</div>
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-														<!-- Optional JavaScript -->
-														<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-														<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-														<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-														<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-													</body>
-												</html>
+                  <h5 class="card-subtitle mb-2 text-muted">Contact me at: </h5>
+            <a href="https://www.facebook.com/rori.m.cooper" class="fa fa-facebook-square fa-3x" title="Rori Macaulay Cooper"></a>
+            <a href="https://twitter.com/RoriMacCooper" class="fa fa fa-twitter-square fa-3x" title="@RoriMacCooper"></a>
+      <a href="https://www.linkedin.com/in/rorimacaulaycooper/" class="fa fa-linkedin-square fa-3x" title="Rori Cooper, AVP at Bank of America"></a>
+      <a href="https://github.com/roricooper" class="fa fa-github-square fa-3x" title="Rori Cooper"></a>
+      <a href="https://plus.google.com/u/0/101358412153339228658" class="fa fa-google-plus-square fa-3x" title="Rori Cooper"></a>
+
+      </div>
+    </div>
+
+    </div>
+
+    </br>
+
+
+    <footer class="container-fluid text-center">
+
+            <p><a href="#top"><i class="fa fa-hand-o-up fa-2x"></i></a></p>
+    </footer>
+    </div>
+</body>
+
+</html>
