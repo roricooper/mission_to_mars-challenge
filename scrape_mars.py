@@ -35,14 +35,22 @@ def scrape():
     scrape_mars_dict['news_title'] = news_title
     scrape_mars_dict['newsp'] = newsp
 
-    # Visit twitter and scrape latest weather report
+    #CONTAINS RETWEETS!!
+    # # Visit twitter and scrape latest weather report
     twitter_url = 'https://twitter.com/marswxreport?lang=en'
     twitter_response = requests.get(twitter_url)
-    twitter_soup = bs(twitter_response.text, 'lxml')
+    #twitter_soup = bs(twitter_response.text, 'lxml')
 
     # Find weather data
-    twitter_result = twitter_soup.find('div', class_='js-tweet-text-container')
-    mars_weather = twitter_result.find('p', class_='js-tweet-text').text
+    #twitter_result = twitter_soup.find('div', class_='js-tweet-text-container')
+    #mars_weather = twitter_result.find('p', class_='js-tweet-text').text
+
+    #DOES NOT CONTAIN RETWEETS!
+    twitter_soup = bs(twitter_response.text, 'html.parser')
+    # First, find a tweet with the data-name `Mars Weather`
+    twitter_result = twitter_soup.find('div', attrs={"class": "tweet", "data-name": "Mars Weather"})
+    # Next, search within the tweet for the p tag containing the tweet text
+    mars_weather = twitter_result.find('p', 'tweet-text').get_text()
 
     # Store scraped data into dictionary
     scrape_mars_dict['mars_weather'] = mars_weather
